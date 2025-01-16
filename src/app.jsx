@@ -55,29 +55,33 @@ export default function App() {
         </button>
       </section>
       {isOpen && (
-        <div className="absolute inset-0 grid place-items-center bg-white">
-          <section className="relative z-30 rounded-md bg-white p-4">
-            <h2 className="text-4xl font-bold leading-[1] tracking-tighter">
-              Resultado:
-            </h2>
-            <p className="mt-2 opacity-50">{result}</p>
-            <img
-              src="/milky.jpeg"
-              className="mt-4 max-h-[300px] w-full min-w-[225px] max-w-[400px] overflow-hidden rounded-md object-cover"
-            />
-            <button
-              onClick={() => {
-                setResult(getRandomResult());
-                setIsOpen(false);
-              }}
-              className="mt-4 flex w-full items-center justify-center rounded-md bg-pink-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
-            >
-              Cerrar
-            </button>
-          </section>
-        </div>
+        <>
+          <div className="absolute inset-0 grid place-items-center bg-white">
+            <div className="pointer-events-none absolute inset-0 z-30">
+              <ReactConfetti width={width} height={height} />
+            </div>
+            <section className="relative rounded-md bg-white p-4">
+              <h2 className="text-4xl font-bold leading-[1] tracking-tighter">
+                Resultado:
+              </h2>
+              <p className="mt-2 opacity-50">{result}</p>
+              <img
+                src="/milky.jpeg"
+                className="mt-4 max-h-[300px] w-full min-w-[225px] max-w-[400px] overflow-hidden rounded-md object-cover"
+              />
+              <button
+                onClick={() => {
+                  setResult(getRandomResult());
+                  setIsOpen(false);
+                }}
+                className="mt-4 flex w-full items-center justify-center rounded-md bg-pink-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+              >
+                Cerrar
+              </button>
+            </section>
+          </div>
+        </>
       )}
-      {isOpen && <ReactConfetti width={width} height={height} />}
     </main>
   );
 }
